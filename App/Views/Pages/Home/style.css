@@ -1,0 +1,101 @@
+
+.main{
+  position: relative;
+  min-width: 1200px;
+}
+
+.list-img{
+  display: flex;
+}
+
+.control{
+  position: absolute;
+  top:50%;
+  transform: translateY(-50%);
+  font-size: 400%;
+  padding: 5px;
+  background: white;
+}
+.prev{
+  left: 1px;
+}
+
+.next{
+  right: 1px;
+}
+
+.active2{
+  background: rgb(104, 127, 137);
+}
+
+.news p{
+  font-size: 200%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.document p{
+  font-size: 200%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.footer{
+  width: 100hv;
+  height: 70px;
+  background: black;
+  color: white;
+  text-align: center;
+  padding: 8px 0;
+}
+
+.footer p{
+  padding-bottom: 8px;
+}
+
+
+.newsfeed{
+  display: flex;
+  font-family: "Poppins", sans-serif;
+}
+
+.card{
+  width: 300px;
+  height: 400px;
+  background: rgb(245, 240, 240);
+  font-size: 60%;
+  margin-left: 20px;
+  padding: 10px;
+  border-radius: 5px;
+
+}
+
+.card-img{
+  display: block;
+  width: 280px;
+  height: 210px;
+}
+
+.card-button{
+  display: block;
+  width: 100%;
+  padding: 1.5rem;
+  font-size: 1rem;
+  text-align: center;
+  color: #3498DB;
+  background-color: #d8e0fd;
+  border: none;
+  border-radius: 0.4rem;
+  transition: 0.2s;
+  cursor: pointer;
+  letter-spacing: 0.1rem;
+}
+
+.card-button:hover{
+  color: black;
+  background: white;
+}
+
+.document{
+  margin: 20px 0;
+}
