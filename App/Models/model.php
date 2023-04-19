@@ -1,15 +1,17 @@
 <?php
-abstract class Employee{
+class Employee{
     public $employeeName;
     public $employeeID;
+    public $employeeType;
 
-    public function __construct($employeeID, $employeeName){
-        $this->employeeID = $employeeID;
-        $this->employeeName = $employeeName;
+    public function __construct($employeeID, $employeeName , $employeeType){
+        $this-> employeeID = $employeeID;
+        $this-> employeeName = $employeeName;
+        $this-> employeeType = $employeeType;
     }
     // public function __construct(){
-    //     $this->employeeID = "";
-    //     $this->employeeName = "";
+    //     $this->employeeID = null;
+    //     $this->employeeName = null;
     // }
     public function __constructCopy(Employee $another){
         $this->employeeID = $another -> employeeID;
@@ -17,13 +19,13 @@ abstract class Employee{
     }
 }
 
-class Janitor extends Employee{
-    public $employeeType = "janitor";
-}
+// class Janitor extends Employee{
+//     public $employeeType = "janitor";
+// }
 
-class Collector extends Employee{
-    public $employeeType = "collector";
-}
+// class Collector extends Employee{
+//     public $employeeType = "collector";
+// }
 
 class Collecting{
     public $status;  // bool value, 1 is can use, 0 is can not
@@ -32,10 +34,10 @@ class Collecting{
     public $weight;   // current weight of vihecle
     public $collectingID;
 
-    public function __construct($status, $fuelConsumtion, $capacity, $collectingID){
+    public function __construct($status, $collectingID){
         $this->status = $status;
-        $this->fuelConsumtion = $fuelConsumtion;
-        $this->capacity = $capacity;
+        $this->fuelConsumtion = 1000;
+        $this->capacity = 10000;
         $this->collectingID = $collectingID;
         $this->weight = 0;
     }
@@ -53,19 +55,37 @@ class Troller{
     public $status; // bool value, 1 is can use, 0 is can not
     public $trollerID;
 
-    public function __construct($trollerID){
+    public function __construct($status, $trollerID){
         $this->trollerID = $trollerID;
-        $this->status = false;
+        $this->status = $status;
     }
 }
 
 class Task{
     public $taskID;
     public $state;
-    public $starTime = 9;
-    public $endTime = 21;
+    public $date;
+    public $starTime;
+    public $endTime;
     public $employee ;
+    public $vehicle;
+    public $notice;
 
+    public function __construct($taskID, $state, $date,$starTime,$endTime,$employee ,$vehicle,$notice){
+        $this->taskID = $taskID;
+        $this->state = $state;
+        $this->date = $date;
+        $this->starTime = $starTime ;
+        $this->endTime = $endTime;
+        $this->employee = $employee;
+        $this->vehicle = $vehicle;
+        $this->notice = $notice;
+    }
+
+    public function view(){
+        echo $this->taskID ."-". $this->state ."-". $this->date ."-". $this->starTime ."-". $this->endTime ."-".  $this->employee
+        ."-". $this->vehicle ."-". $this->notice;
+    }
 }
 
 ?>

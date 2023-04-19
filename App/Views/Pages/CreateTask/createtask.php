@@ -32,21 +32,20 @@
     <div class="main-container">
          <!-- Code here -->
         <div class="container">
-                <form action="">
+                <form clas="was-validated" name="create-task" id="myForm" action="../../../Controllers/CreatetaskController/CreatetaskController.php" method="post">
                 <div class="row">
                     <div class="col-sm-6">
                         <label for="staff-type">Staff type <span style="color:red;"> * </span></label>
-                        <select class="form-select form-select-sm" id="staff-type" name="staff-type">
-                            <option selected value="none">Open this select menu</option>
-                            <option value="collector">Collector</option>
+                        <select class="form-select form-select-sm" id="staff-type" name="staff-type" required>
+                            <option value="collector" selected>Collector</option>
                             <option value="janitor">Janitor</option>
                         </select>
 
                         <label for="staff-type">MCPs <span style="color:red;"> * </span></label>
-                        <input type="text" class="form-control form-control-sm" id="MCPs" name="MCPs">
+                        <input type="text" class="form-control form-control-sm" id="MCPs" name="MCPs" readonly>
 
                         <label for="vehicle">Vehicle <span style="color:red;"> * </span></label>
-                        <select class="form-select form-select-sm" id="vehicle" name="vehicle">
+                        <select class="form-select form-select-sm" id="vehicle" name="vehicle" required>
                             <!-- <option selected>Open this select menu</option>
                             <option value="VC-1">Collecting - 1</option>
                             <option value="VC-2">Collecting - 2</option>
@@ -60,10 +59,9 @@
 
                         
                         <label for="staff">Date<span style="color:red;"> * </span></label>
-                        <div class="input-group-sm date" id="datepicker">
-                                        <input type="text" class="form-control" name="date">
-                                        <span class="input-group-append">
-                                        </span>
+                        <div class="input-group-sm date" name="date" id="datepicker">
+                            <input type="date" class="form-control" name="date" id="date">
+                            </input>
                         </div>
 
                         <label for="staff">Staff</label>
@@ -90,7 +88,7 @@
                     </div>
                     
                     <div class="col-sm-6 text-left" id="map">
-                        <input class="btn btn-primary" type="submit" value="Submit">
+                        <input class="btn btn-primary" name ="create-task" type="submit" value="Submit">
                     </div>
                 </div>
                 </form>

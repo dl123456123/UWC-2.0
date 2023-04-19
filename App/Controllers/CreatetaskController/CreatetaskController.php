@@ -1,4 +1,5 @@
 <?php
+require_once('../../Models/init.php');
 if(isset($_GET['selectedValue'])){
         // get the selected value from the first select field
     $selectedValue = $_GET['selectedValue'];
@@ -10,28 +11,64 @@ if(isset($_GET['selectedValue'])){
     // generate the options for the second select field based on the selected value
     if ($selectedValue == 'collector') {
         $response['vehicle'] = '
-                                <option selected>Open this select menu</option>
-                                <option value="VC-1">Collecting - 1</option>
-                                <option value="VC-2">Collecting - 2</option>
-                                <option value="VC-3">Collecting - 3</option>
-                                <option value="VC-4">Collecting - 4</option>';
+                                <option value="C-1">Collecting - 1</option>
+                                <option value="C-2">Collecting - 2</option>
+                                <option value="C-3">Collecting - 3</option>
+                                <option value="C-4">Collecting - 4</option>';
         $response['staff'] = '
-                                <option selected>Open this select menu</option>
-                                <option value="EC-1">Nguyễn Văn A - Collector 1</option>
-                                <option value="EC-2">Nam máy bơm - Collector 2</option>';
+                                <option value="" selected>Open this select menu</option>
+                                <option value="C-1;Nguyễn Văn A">Nguyễn Văn A - Collector 1</option>
+                                <option value="C-2;Nam máy bơm">Nam máy bơm - Collector 2</option>';
     } else if ($selectedValue == 'janitor') {
         $response['vehicle'] = '
-                                <option selected>Open this select menu</option>
-                                <option value="VT-1">Troller - 1</option>
-                                <option value="VT-2">Troller - 2</option>
-                                <option value="VT-3">Troller - 3</option>
-                                <option value="VT-4">Troller - 4</option>';
-        $response['staff'] = ' <option selected>Open this select menu</option>
-                                <option value="EJ-1">Nhân sensor - Janitor 1</option>
-                                <option value="EJ-2">Đạt led - Janitor 2</option> -->';
+                                <option value="T-1">Troller - 1</option>
+                                <option value="T-2">Troller - 2</option>
+                                <option value="T-3">Troller - 3</option>
+                                <option value="T-4">Troller - 4</option>';
+        $response['staff'] = ' <option value="" selected>Open this select menu</option>
+                                <option value="J-1;Nhân sensor">Nhân sensor - Janitor 1</option>
+                                <option value="J-2;Đạt led">Đạt led - Janitor 2</option> -->';
     }
 
     echo json_encode($response);
 }
 
+$tasklist = array();
+
+if(isset($_POST['create-task'])){
+    $taskID = count($tasklist) + 1;
+    $type_employee = $_POST['staff-type'];
+    $MCPs = $_POST['MCPs'];
+    $date = $_POST['date'];
+    $vehicleID = $_POST['vehicle'];
+    $notice = $_POST['notice'];
+    $employee ="";
+    if($type_employee == "collector"){
+        if(!empty($_POST['staff'])){
+            $temp_employee = explode(";",$_POST['staff']);
+            $employee = new Employee($temp_employee[0],$temp_employee[1],"collector");
+            $state = "notyet";
+        }else{
+            $state = "unassigned";
+        }
+        $vehicle = new Collecting(0,$vehicleID);
+    }else if($type_employee == "janitor"){
+        if(!empty($_POST['staff'])){
+            $temp_employee = explode(";",$_POST['staff']);
+            $employee = new Employee($temp_employee[0],$temp_employee[1],"janitor");
+            $state = "notyet";
+        }else{
+            $state = "unassigned";
+        }
+        $vehicle = new Troller(1, $vehicleID);
+    }
+
+    $starTime = 9;
+    $endTime = 21;
+
+
+
+    $tasklist[] = new Task($taskID, $state, $date,$starTime,$endTime, $employee-> employeeName ,$vehicle -> status,$notice);
+    $tasklist[0]->view();
+}
 ?>
