@@ -6,6 +6,14 @@ var myPos = [
 // list of MCP after
 var myListChosen = [];
 
+function renderMCPToHMTL(myListChosen){
+    document.getElementById("MCPs").value ="";
+    for(let i = 0;i < myListChosen.length;++i){
+        if(i === 0) document.getElementById("MCPs").value = myListChosen[i].title ;
+        else
+            document.getElementById("MCPs").value = ( document.getElementById("MCPs").value + ", "+ myListChosen[i].title);                
+    }
+}
 
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -44,15 +52,14 @@ function initMap() {
     }
 // creat route throght all chosen MCP list
 var directionsService = new google.maps.DirectionsService();
+var directionsRenderer= new google.maps.DirectionsRenderer();
+directionsRenderer.setMap(map);
+
 
 const creatRoute = function(result, status) {
     if (status == google.maps.DirectionsStatus.OK) {
-      var directionsDisplay = new google.maps.DirectionsRenderer({
-        map: map,
-        directions: result
-      });
+        directionsRenderer.setDirections(result);
     }
-    //console.log(result);
 }
 
 
@@ -61,38 +68,48 @@ const creatRoute = function(result, status) {
             google.maps.event.addListener(marker,'click',function() {
                     map.setZoom(15);
                     map.setCenter(marker.getPosition());
-                    // console.log(myListChosen.includes(marker));
 
                     if(myListChosen.length === 0){ 
-                        document.getElementById("MCPs").value +=  marker.title;
+                        //document.getElementById("MCPs").value +=  marker.title;
                         myListChosen = [...myListChosen, marker];
                     }
                     else if(!myListChosen.includes(marker)) {
 
-                        document.getElementById("MCPs").value = ( document.getElementById("MCPs").value + ", "+ marker.title);
+                        //document.getElementById("MCPs").value = ( document.getElementById("MCPs").value + ", "+ marker.title);
                         myListChosen = [...myListChosen, marker];
+                    }else {
+                        myListChosen.splice(myListChosen.indexOf(marker),1);
                     }
-                    // console.log(myListChosen);
-
+                    
+                    renderMCPToHMTL(myListChosen);
                     //creat route
+                    
+                    //creat route request
+                    
                     var startPoint = undefined;
                     var waitPoint = [];
                     var endPoint= undefined;
                     var request = {};
-                    // if(myListChosen.length == 2)
-                    if(myListChosen.length === 2){
+
+                    if(myListChosen.length === 1){
                         startPoint = myListChosen[0];
-                        endPoint = myListChosen[1];
-                        // console.log(startPoint);
-                        // console.log(endPoint);
+                        endPoint = myListChosen[0];
                         request = {
-                            // origin: startPoint.getPosition(),
-                            // destination: endPoint.getPosition(),
                             origin:  {lat: startPoint.getPosition().lat(), lng: startPoint.getPosition().lng()},
                             destination: {lat: endPoint.getPosition().lat(), lng: endPoint.getPosition().lng()},
                             optimizeWaypoints: true,
                             travelMode: google.maps.TravelMode.DRIVING
-                          };
+                        };
+                    }
+                    else if(myListChosen.length === 2){
+                        startPoint = myListChosen[0];
+                        endPoint = myListChosen[1];
+                        request = {
+                            origin:  {lat: startPoint.getPosition().lat(), lng: startPoint.getPosition().lng()},
+                            destination: {lat: endPoint.getPosition().lat(), lng: endPoint.getPosition().lng()},
+                            optimizeWaypoints: true,
+                            travelMode: google.maps.TravelMode.DRIVING
+                        };
 
                     }
                     else if(myListChosen.length > 2){
@@ -101,22 +118,26 @@ const creatRoute = function(result, status) {
                             waitPoint = [...waitPoint, {location: myListChosen[i].getPosition()}];
                         }
                         endPoint = myListChosen[myListChosen.length-1];
-                        // console.log(startPoint);
-                        // console.log(waitPoint );
-                        // console.log(endPoint);
                         request = {
-                            // origin: startPoint.getPosition(),
-                            // destination: endPoint.getPosition(),
                             origin:  {lat: startPoint.getPosition().lat(), lng: startPoint.getPosition().lng()},
                             destination: {lat: endPoint.getPosition().lat(), lng: endPoint.getPosition().lng()},
                             waypoints: waitPoint,
                             optimizeWaypoints: true,
                             travelMode: google.maps.TravelMode.DRIVING
-                          };
+                        };
                           
                     } 
-                    //console.log(request);
-                    if(myListChosen.length >= 2) directionsService.route(request, creatRoute);
+
+
+                    //render route to map
+
+                    // if(myListChosen.length === 0){
+                    //     directionsRenderer.setDirections(null);
+                    // }
+                    if(myListChosen.length >= 1) {
+                        directionsService.route(request, creatRoute);
+                    }
+
 
 
                 }
