@@ -89,7 +89,7 @@
                         <input class="btn btn-secondary " type="reset" value="Reset">
                     </div>
                     
-                    <div class="col-sm-6 text-left">
+                    <div class="col-sm-6 text-left" id="map">
                         <input class="btn btn-primary" type="submit" value="Submit">
                     </div>
                 </div>
