@@ -70,8 +70,9 @@ class Task{
     public $employee ;
     public $vehicle;
     public $notice;
+    public $MCPs;
 
-    public function __construct($taskID, $state, $date,$starTime,$endTime,$employee ,$vehicle,$notice){
+    public function __construct($taskID, $state, $date,$starTime,$endTime,$employee ,$vehicle,$notice , $MCPs){
         $this->taskID = $taskID;
         $this->state = $state;
         $this->date = $date;
@@ -80,6 +81,7 @@ class Task{
         $this->employee = $employee;
         $this->vehicle = $vehicle;
         $this->notice = $notice;
+        $this -> MCPs = $MCPs;
     }
 
     public function view(){
