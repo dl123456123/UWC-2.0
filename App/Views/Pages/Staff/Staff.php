@@ -111,13 +111,13 @@ session_start();
                         <i class="fas fa-clock fa-2x"></i><p>Thời gian:  <span>'.$task->date.'</span></p>
                         </div>
                         <div class="info">
-                        <i class="fas fa-check-circle fa-2x"></i><p>Check-in:  <span>7H-11H 2/2/22222</span></p>
+                        <i class="fas fa-check-circle fa-2x"></i><p>Check-in:  <span>-----</span></p>
                         </div>
                         <div class="info">
-                        <i class="fas fa-sign-out-alt fa-2x"></i><p>Check-out:  <span>7H-11H 2/2/2222</span></p>
+                        <i class="fas fa-sign-out-alt fa-2x"></i><p>Check-out:  <span>-----</span></p>
                         </div>
                         <div class="info">
-                        <i class="fas fa-exclamation-circle fa-2x"></i><p>Lưu ý:  <span>Đạt 2cm</span></p>
+                        <i class="fas fa-exclamation-circle fa-2x"></i><p>Lưu ý:  <span>'.$task->notice.'</span></p>
                         </div>
                     </div>
                         
