@@ -1,5 +1,11 @@
 <?php
-require_once('../../Models/init.php');
+require_once('../../Models/model.php');
+session_start();
+
+if(!isset($_SESSION['task-list'])){
+    $_SESSION['task-list'] = array();
+}
+
 if(isset($_GET['selectedValue'])){
         // get the selected value from the first select field
     $selectedValue = $_GET['selectedValue'];
@@ -33,10 +39,9 @@ if(isset($_GET['selectedValue'])){
     echo json_encode($response);
 }
 
-$tasklist = array();
 
 if(isset($_POST['create-task'])){
-    $taskID = count($tasklist) + 1;
+    $taskID = count($_SESSION['task-list']) + 1;
     $type_employee = $_POST['staff-type'];
     $MCPs = $_POST['MCPs'];
     $date = $_POST['date'];
@@ -68,7 +73,9 @@ if(isset($_POST['create-task'])){
 
 
 
-    $tasklist[] = new Task($taskID, $state, $date,$starTime,$endTime, $employee-> employeeName ,$vehicle -> status,$notice);
-    $tasklist[0]->view();
+    $task = new Task($taskID, $state, $date,$starTime, $endTime, $employee, $vehicle, $notice);
+    array_push($_SESSION['task-list'] ,serialize($task));
+
+    header('Location: ../../Views/Pages/CreateTask/createtask.php');
 }
 ?>

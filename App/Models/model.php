@@ -83,8 +83,8 @@ class Task{
     }
 
     public function view(){
-        echo $this->taskID ."-". $this->state ."-". $this->date ."-". $this->starTime ."-". $this->endTime ."-".  $this->employee
-        ."-". $this->vehicle ."-". $this->notice;
+        echo $this->taskID ."-". $this->state ."-". $this->date ."-". $this->starTime ."-". $this->endTime ."-".  $this->employee->employeeID
+        ."-". $this->vehicle->status ."-". $this->notice;
     }
 }
 
