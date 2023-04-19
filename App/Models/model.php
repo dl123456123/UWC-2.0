@@ -64,7 +64,7 @@ class Task{
     public $state;
     public $starTime = 9;
     public $endTime = 21;
-    public $employee = new Employee();
+    public $employee ;
 
 }
 
