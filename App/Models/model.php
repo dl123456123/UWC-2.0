@@ -8,8 +8,8 @@ abstract class Employee{
         $this->employeeName = $employeeName;
     }
     // public function __construct(){
-    //     $this->employeeID = "";
-    //     $this->employeeName = "";
+    //     $this->employeeID = null;
+    //     $this->employeeName = null;
     // }
     public function __constructCopy(Employee $another){
         $this->employeeID = $another -> employeeID;
@@ -62,10 +62,23 @@ class Troller{
 class Task{
     public $taskID;
     public $state;
-    public $starTime = 9;
-    public $endTime = 21;
-    public $employee = new Employee();
+    public $date;
+    public $starTime;
+    public $endTime;
+    public $employee ;
+    public $vehicle;
+    public $notice;
 
+    public function __construct($taskID, $state, $date,$starTime,$endTime,$employee ,$vehicle,$notice){
+        $this->taskID = $taskID;
+        $this->state = $state;
+        $this->date = $date;
+        $this->starTime = $starTime ;
+        $this->endTime = $endTime;
+        $this->employee = $employee;
+        $this->vehicle = $vehicle;
+        $this->notice = $notice;
+    }
 }
 
 ?>
