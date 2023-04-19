@@ -1,7 +1,9 @@
 var myPos = [
     {title:"HCMUT",lat: 10.880758672488803,  lng: 106.8053648373238},
     {title:"HCMUS",lat: 10.875804131276233,  lng:106.7991484373238},
-    {title:"USSH",lat: 10.873569796248342,  lng:  106.8022213508149}
+    {title:"USSH",lat: 10.873569796248342,  lng:  106.8022213508149},
+    {title:"UIT", lat:10.870486352377839, lng: 106.80308497967498},
+    {title:"UI", lat:10.877774438428599, lng: 106.80156595081486}
 ];
 // list of MCP after
 var myListChosen = [];
@@ -100,23 +102,6 @@ function initMap() {
             }
         );
         markers[i].setMap(map);
-    }
-    // add marker on click
-    google.maps.event.addListener(                                      
-                                    map, 
-                                    "click", 
-                                    (event) =>  {
-                                    addMarker(event.latLng, map);
-                                    }
-                                );
-
-     function addMarker(location, map) {
-        // Add the marker at the clicked location, and add the next-available label
-        // from the array of alphabetical characters.
-        new google.maps.Marker({
-            position: location,
-            map: map,
-        });
     }
 // creat route throght all chosen MCP list
 directionsService = new google.maps.DirectionsService();
