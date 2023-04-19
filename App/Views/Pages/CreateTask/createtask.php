@@ -21,7 +21,7 @@
     <script src="./map.js"></script>
     <script src="createtask.js"></script>
     <link rel="stylesheet" href="../../Component/style.css">
-    <script src="../../Component/app.js"></script>
+    <!-- <script src="../../Component/app.js"></script> -->
     <title>Create task</title>
 
 </head>

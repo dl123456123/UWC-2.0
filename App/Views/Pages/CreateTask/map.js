@@ -5,6 +5,8 @@ var myPos = [
 ];
 // list of MCP after
 var myListChosen = [];
+var directionsService = undefined;
+var directionsRendere = undefined;
 
 function renderMCPToHMTL(myListChosen){
     document.getElementById("MCPs").value ="";
@@ -51,8 +53,8 @@ function initMap() {
         });
     }
 // creat route throght all chosen MCP list
-var directionsService = new google.maps.DirectionsService();
-var directionsRenderer= new google.maps.DirectionsRenderer();
+directionsService = new google.maps.DirectionsService();
+directionsRenderer= new google.maps.DirectionsRenderer();
 directionsRenderer.setMap(map);
 
 
@@ -148,3 +150,12 @@ const creatRoute = function(result, status) {
   }
 
 //   google.maps.event.addDomListener(window, 'load', initMap);
+$(document).ready(function() {
+    $("#reset-a").on('click',function(){
+
+        // Nếu đã có directions, xóa từng directions một
+        directionsRenderer.setDirections(null);
+        
+      
+    });
+  });

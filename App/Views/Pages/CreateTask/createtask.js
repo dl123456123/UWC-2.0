@@ -20,6 +20,14 @@ $(document).ready(function() {
     });
 
     $("#reset-a").on('click',function(){
+      var directions = directionsRenderer.getDirections();
+
+      // Nếu đã có directions, xóa từng directions một
+      if (directions) {
+        directions.routes = [];
+        directionsRenderer.setDirections(directions);
+      }
+      
       var selectedValue = "none";
       $.ajax({
         url: '../../../Controllers/CreatetaskController/CreatetaskController.php',
