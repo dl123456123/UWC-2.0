@@ -86,11 +86,11 @@
                 <br>
                 <div class="row">
                     <div class="col-sm-6 text-right">
-                        <input class="btn btn-secondary " type="reset" value="Reset">
+                        <input class="btn btn-secondary" id="reset-a" type="reset" value="Reset">
                     </div>
                     
                     <div class="col-sm-6 text-left">
-                        <input class="btn btn-primary" type="submit" value="Submit">
+                        <input class="btn btn-primary" id="submit" type="submit" value="Submit">
                     </div>
                 </div>
                 </form>
