@@ -132,12 +132,9 @@ directionsRenderer.setMap(map);
                     map.setCenter(marker.getPosition());
 
                     if(myListChosen.length === 0){ 
-                        //document.getElementById("MCPs").value +=  marker.title;
                         myListChosen = [...myListChosen, marker];
                     }
                     else if(!myListChosen.includes(marker)) {
-
-                        //document.getElementById("MCPs").value = ( document.getElementById("MCPs").value + ", "+ marker.title);
                         myListChosen = [...myListChosen, marker];
                     }else {
                         myListChosen.splice(myListChosen.indexOf(marker),1);
