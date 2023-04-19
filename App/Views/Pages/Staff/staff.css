@@ -181,7 +181,7 @@
     margin-left: 250px;
     padding: 15px;
     background-size: cover;
-    height: 100vh;
+    height: auto;
     transition: 0.3s;
   }
   
