@@ -1,19 +1,36 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <title>UWC</title>
-        <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="../../Component/style.css">
-        <script src="../../Component/app.js"></script>
+<html lang="en">
 
-		<!-- add lib Chart.js -->
-		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    </head>
-    <body>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title>UWC</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./Component/style.css">
+    <script src="./Component/app.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    
+
+    <!-- add lib Chart.js -->
+	<link rel="stylesheet" href="../../Component/style.css">
+    <script src="../../Component/app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+</head>
+
+<body>
     <?php include '../../Component/component.php' ?>
 
     <div class="wrapper">
+        
+        <!--main container start-->
         <div class="main-container">
             <!-- Code here -->
             <div class="info-data">
@@ -54,7 +71,8 @@
 					<div class="head">
 						<div>
 							<h2>235</h2>
-							<p>staff idle</p>
+							<!-- <p>staff idle</p> -->
+                            <a href="staff_list.html">List staff </a>
 						</div>
 						<i class='bx bx-trending-up icon' ></i>
 					</div>
@@ -81,7 +99,8 @@
         </div>
     </div>
 
-    <script src="app.js"></script>
+    <script src="dashboard.js"></script>
     <script src="../../Component/app.js"></script>
-    </body>
+</body>
+
 </html>
