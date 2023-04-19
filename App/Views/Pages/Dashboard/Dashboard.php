@@ -6,6 +6,9 @@
         <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href="../../Component/style.css">
         <script src="../../Component/app.js"></script>
+
+		<!-- add lib Chart.js -->
+		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </head>
     <body>
     <?php include '../../Component/component.php' ?>
@@ -51,8 +54,7 @@
 					<div class="head">
 						<div>
 							<h2>235</h2>
-							<!-- <p>staff idle</p> -->
-                            <a href="staff_list.html">List staff </a>
+							<p>staff idle</p>
 						</div>
 						<i class='bx bx-trending-up icon' ></i>
 					</div>
