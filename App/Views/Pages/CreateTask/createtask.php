@@ -37,7 +37,7 @@
                     <div class="col-sm-6">
                         <label for="staff-type">Staff type <span style="color:red;"> * </span></label>
                         <select class="form-select form-select-sm" id="staff-type" name="staff-type">
-                            <option selected>Open this select menu</option>
+                            <option selected value="none">Open this select menu</option>
                             <option value="collector">Collector</option>
                             <option value="janitor">Janitor</option>
                         </select>

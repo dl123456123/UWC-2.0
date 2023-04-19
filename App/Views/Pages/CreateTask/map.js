@@ -7,6 +7,7 @@ var myPos = [
 var myListChosen = [];
 var directionsService = undefined;
 var directionsRenderer = undefined;
+// function area
 
 function renderMCPToHMTL(myListChosen){
     document.getElementById("MCPs").value ="";
@@ -14,6 +15,71 @@ function renderMCPToHMTL(myListChosen){
         if(i === 0) document.getElementById("MCPs").value = myListChosen[i].title ;
         else
             document.getElementById("MCPs").value = ( document.getElementById("MCPs").value + ", "+ myListChosen[i].title);                
+    }
+}
+const creatRoute = function(result, status) {
+    if (status == google.maps.DirectionsStatus.OK) {
+        directionsRenderer.setDirections(result);
+    }
+}
+
+
+const creatRouteRequest = function(){
+    var startPoint = undefined;
+    var waitPoint = [];
+    var endPoint= undefined;
+    var request = {};
+
+    if(myListChosen.length === 1){
+        startPoint = myListChosen[0];
+        endPoint = myListChosen[0];
+        request = {
+            origin:  {lat: startPoint.getPosition().lat(), lng: startPoint.getPosition().lng()},
+            destination: {lat: endPoint.getPosition().lat(), lng: endPoint.getPosition().lng()},
+            optimizeWaypoints: true,
+            travelMode: google.maps.TravelMode.DRIVING
+        };
+    }
+    else if(myListChosen.length === 2){
+        startPoint = myListChosen[0];
+        endPoint = myListChosen[1];
+        request = {
+            origin:  {lat: startPoint.getPosition().lat(), lng: startPoint.getPosition().lng()},
+            destination: {lat: endPoint.getPosition().lat(), lng: endPoint.getPosition().lng()},
+            optimizeWaypoints: true,
+            travelMode: google.maps.TravelMode.DRIVING
+        };
+
+    }
+    else if(myListChosen.length > 2){
+        startPoint = myListChosen[0];
+        for(let i = 1; i < myListChosen.length-1; ++i){
+            waitPoint = [...waitPoint, {location: myListChosen[i].getPosition()}];
+        }
+        endPoint = myListChosen[myListChosen.length-1];
+        request = {
+            origin:  {lat: startPoint.getPosition().lat(), lng: startPoint.getPosition().lng()},
+            destination: {lat: endPoint.getPosition().lat(), lng: endPoint.getPosition().lng()},
+            waypoints: waitPoint,
+            optimizeWaypoints: true,
+            travelMode: google.maps.TravelMode.DRIVING
+        };
+            
+    } 
+    if(myListChosen.length >= 1) {
+        directionsService.route(request, creatRoute);
+    }
+}
+
+
+
+const clearRoute = function(){
+    var directions = directionsRenderer.getDirections();
+
+    // Nếu đã có directions, xóa từng directions một
+    if (directions) {
+        directions.routes = [];
+        directionsRenderer.setDirections(directions);
     }
 }
 
@@ -58,12 +124,6 @@ directionsRenderer= new google.maps.DirectionsRenderer();
 directionsRenderer.setMap(map);
 
 
-const creatRoute = function(result, status) {
-    if (status == google.maps.DirectionsStatus.OK) {
-        directionsRenderer.setDirections(result);
-    }
-}
-
 
 //add listener to all marker in list
     markers.map((marker,idx) => {
@@ -87,60 +147,9 @@ const creatRoute = function(result, status) {
                     //creat route
                     
                     //creat route request
-                    
-                    var startPoint = undefined;
-                    var waitPoint = [];
-                    var endPoint= undefined;
-                    var request = {};
-
-                    if(myListChosen.length === 1){
-                        startPoint = myListChosen[0];
-                        endPoint = myListChosen[0];
-                        request = {
-                            origin:  {lat: startPoint.getPosition().lat(), lng: startPoint.getPosition().lng()},
-                            destination: {lat: endPoint.getPosition().lat(), lng: endPoint.getPosition().lng()},
-                            optimizeWaypoints: true,
-                            travelMode: google.maps.TravelMode.DRIVING
-                        };
+                    if(document.getElementById("staff-type").value === "collector"){
+                        creatRouteRequest();
                     }
-                    else if(myListChosen.length === 2){
-                        startPoint = myListChosen[0];
-                        endPoint = myListChosen[1];
-                        request = {
-                            origin:  {lat: startPoint.getPosition().lat(), lng: startPoint.getPosition().lng()},
-                            destination: {lat: endPoint.getPosition().lat(), lng: endPoint.getPosition().lng()},
-                            optimizeWaypoints: true,
-                            travelMode: google.maps.TravelMode.DRIVING
-                        };
-
-                    }
-                    else if(myListChosen.length > 2){
-                        startPoint = myListChosen[0];
-                        for(let i = 1; i < myListChosen.length-1; ++i){
-                            waitPoint = [...waitPoint, {location: myListChosen[i].getPosition()}];
-                        }
-                        endPoint = myListChosen[myListChosen.length-1];
-                        request = {
-                            origin:  {lat: startPoint.getPosition().lat(), lng: startPoint.getPosition().lng()},
-                            destination: {lat: endPoint.getPosition().lat(), lng: endPoint.getPosition().lng()},
-                            waypoints: waitPoint,
-                            optimizeWaypoints: true,
-                            travelMode: google.maps.TravelMode.DRIVING
-                        };
-                          
-                    } 
-
-
-                    //render route to map
-
-                    // if(myListChosen.length === 0){
-                    //     directionsRenderer.setDirections(null);
-                    // }
-                    if(myListChosen.length >= 1) {
-                        directionsService.route(request, creatRoute);
-                    }
-
-
 
                 }
             )
@@ -152,10 +161,24 @@ const creatRoute = function(result, status) {
 //   google.maps.event.addDomListener(window, 'load', initMap);
 $(document).ready(function() {
     $("#reset-a").on('click',function(){
-
-        // Nếu đã có directions, xóa từng directions một
-        directionsRenderer.setDirections(null);
-        
-      
+       clearRoute();
+       myListChosen = [];
     });
+
+    $('#staff-type').change(function() {
+        // your code here
+        var selectedValue = $('#staff-type').val();
+        if(selectedValue === 'collector'){
+            creatRouteRequest();
+        }
+        else if(selectedValue === "janitor"){
+            clearRoute();
+        }
+        // clear input form
+        else {
+            myListChosen = [];
+            document.getElementById("MCPs").value ="";
+            clearRoute();
+        }
+      });
   });
