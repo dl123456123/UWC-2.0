@@ -1,0 +1,134 @@
+/* .main-container .Chart {
+    float: left;
+    width: 50%;
+}
+.main-container .Map {
+    float: right;
+    width: 50%;
+}
+.main-container .Charts .column-chart {
+  height: 50%;
+}
+.main-container .Charts .line-chart {
+    height: 50%;
+} */
+
+
+.main-container{
+    /* width: 100%; */
+      padding: 24px 20px 20px 20px;
+  }
+  
+  .card:first-child {
+    background-color: #2962ff;
+  }
+  
+  .card:nth-child(2) {
+    background-color: #ff6d00;
+  }
+  
+  .card:nth-child(3) {
+    background-color: #2e7d32;
+  }
+  
+  .card:nth-child(4) {
+    background-color: #d50000;
+  }
+  /* -------------- */
+  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap');
+  
+  * {
+      font-family: 'Open Sans', sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+  }
+  
+  :root {
+      --grey: #F1F0F6;
+      --dark-grey: #8D8D8D;
+      --light: #fff;
+      --dark: #000;
+      --green: #81D43A;
+      --light-green: #E3FFCB;
+      --blue: #1775F1;
+      --light-blue: #D0E4FF;
+      --dark-blue: #0C5FCD;
+      --red: #FC3B56;
+  }
+  
+  html {
+      overflow-x: hidden;
+  }
+  
+  body {
+      background: var(--grey);
+      background-color: #D0E4FF;
+      overflow-x: hidden;
+  }
+  
+  a {
+      text-decoration: none;
+  }
+  
+  li {
+      list-style: none;
+  }
+  .main-container .info-data {
+      margin-top: 36px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-gap: 20px;
+  }
+  .main-container .info-data .card {
+      padding: 20px;
+      border-radius: 10px;
+      background: var(--light);
+      box-shadow: 4px 4px 16px rgba(0, 0, 0, .05);
+  }
+  .main-container .card .head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+  }
+  .main-container .card .head h2 {
+      font-size: 24px;
+      font-weight: 600;
+  }
+  .main-container .card .head p {
+      font-size: 14px;
+  }
+  .main-container .card .head .icon {
+      font-size: 20px;
+      color: var(--green);
+  }
+  .main-container .card .head .icon.down {
+      color: var(--red);
+  }
+  .main-container .card .progress {
+      display: block;
+      margin-top: 24px;
+      height: 10px;
+      width: 100%;
+      border-radius: 10px;
+      background: var(--grey);
+      overflow-y: hidden;
+      position: relative;
+      margin-bottom: 4px;
+  }
+  .main-container .card .progress::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      background: var(--blue);
+      width: var(--value);
+  }
+  .main-container .card .label {
+      font-size: 14px;
+      font-weight: 700;
+  }
+  
+  
+  
