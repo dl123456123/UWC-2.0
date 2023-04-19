@@ -1,3 +1,14 @@
+<?php
+require_once('../../../Models/model.php');
+session_start();
+if(isset($_SESSION['task-list'])){
+
+}
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head>
@@ -85,27 +96,43 @@
                 </div>
             
 
-                <div class="task">
-                    <p>Thu gom rác </p>
-                    <div class="info">
-                    <i class="fas fa-map-marker-alt fa-2x"></i><p>Địa điểm:  <span>MCP1, MCP,5, MCP6</span></p>
+                  <?php
+                  if (isset($_SESSION['task-list'])) {
+                    foreach ($_SESSION['task-list'] as $task_str) {
+                        $task = unserialize($task_str);
+                        echo '
+                        
+                        <div class="task">
+                        <p>Thu gom rác </p>
+                        <div class="info">
+                        <i class="fas fa-map-marker-alt fa-2x"></i><p>Địa điểm:  <span> </span></p>
+                        </div>
+                        <div class="info">
+                        <i class="fas fa-truck fa-2x"></i><p>Phương tiện:  <span>Xe thu gom 49-L1254</span></p>
+                        </div>
+                        <div class="info">
+                        <i class="fas fa-clock fa-2x"></i><p>Thời gian:  <span>7H-11H 2/2/2222</span></p>
+                        </div>
+                        <div class="info">
+                        <i class="fas fa-check-circle fa-2x"></i><p>Check-in:  <span>7H-11H 2/2/22222</span></p>
+                        </div>
+                        <div class="info">
+                        <i class="fas fa-sign-out-alt fa-2x"></i><p>Check-out:  <span>7H-11H 2/2/2222</span></p>
+                        </div>
+                        <div class="info">
+                        <i class="fas fa-exclamation-circle fa-2x"></i><p>Lưu ý:  <span>Đạt 2cm</span></p>
+                        </div>
                     </div>
-                    <div class="info">
-                    <i class="fas fa-truck fa-2x"></i><p>Phương tiện:  <span>Xe thu gom 49-L1254</span></p>
-                    </div>
-                    <div class="info">
-                    <i class="fas fa-clock fa-2x"></i><p>Thời gian:  <span>7H-11H 2/2/2222</span></p>
-                    </div>
-                    <div class="info">
-                    <i class="fas fa-check-circle fa-2x"></i><p>Check-in:  <span>7H-11H 2/2/22222</span></p>
-                    </div>
-                    <div class="info">
-                    <i class="fas fa-sign-out-alt fa-2x"></i><p>Check-out:  <span>7H-11H 2/2/2222</span></p>
-                    </div>
-                    <div class="info">
-                    <i class="fas fa-exclamation-circle fa-2x"></i><p>Lưu ý:  <span>Đạt 2cm</span></p>
-                    </div>
-                </div>
+                        
+                        ';
+
+                    }
+                } else {
+                    echo 'No Task.';
+                }
+
+                  ?>
+
             </div>
         </div>
 
