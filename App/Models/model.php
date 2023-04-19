@@ -32,13 +32,13 @@ class Collecting{
     public $fuelConsumtion;
     public $capacity;
     public $weight;   // current weight of vihecle
-    public $collectingID;
+    public $vehicleID;
 
     public function __construct($status, $collectingID){
         $this->status = $status;
         $this->fuelConsumtion = 1000;
         $this->capacity = 10000;
-        $this->collectingID = $collectingID;
+        $this->vehicleID = $collectingID;
         $this->weight = 0;
     }
 
@@ -46,17 +46,17 @@ class Collecting{
         $this->status = false;
         $this->fuelConsumtion = $fuelConsumtion;
         $this->capacity = $capacity;
-        $this->collectingID = $collectingID;
+        $this->vehicleID = $collectingID;
         $this->weight = 0;
     }
 }
 
 class Troller{
     public $status; // bool value, 1 is can use, 0 is can not
-    public $trollerID;
+    public $vehicleID;
 
     public function __construct($status, $trollerID){
-        $this->trollerID = $trollerID;
+        $this->vehicleID = $trollerID;
         $this->status = $status;
     }
 }

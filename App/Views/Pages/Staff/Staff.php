@@ -1,9 +1,6 @@
 <?php
 require_once('../../../Models/model.php');
 session_start();
-if(isset($_SESSION['task-list'])){
-
-}
 
 ?>
 
@@ -105,13 +102,13 @@ if(isset($_SESSION['task-list'])){
                         <div class="task">
                         <p>Thu gom rác </p>
                         <div class="info">
-                        <i class="fas fa-map-marker-alt fa-2x"></i><p>Địa điểm:  <span> </span></p>
+                        <i class="fas fa-map-marker-alt fa-2x"></i><p>Địa điểm:  <span> '.$task->MCPs.' </span></p>
                         </div>
                         <div class="info">
-                        <i class="fas fa-truck fa-2x"></i><p>Phương tiện:  <span>Xe thu gom 49-L1254</span></p>
+                        <i class="fas fa-truck fa-2x"></i><p>Phương tiện:  <span>'.$task->vehicle->vehicleID.'</span></p>
                         </div>
                         <div class="info">
-                        <i class="fas fa-clock fa-2x"></i><p>Thời gian:  <span>7H-11H 2/2/2222</span></p>
+                        <i class="fas fa-clock fa-2x"></i><p>Thời gian:  <span>'.$task->date.'</span></p>
                         </div>
                         <div class="info">
                         <i class="fas fa-check-circle fa-2x"></i><p>Check-in:  <span>7H-11H 2/2/22222</span></p>
