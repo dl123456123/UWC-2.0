@@ -73,7 +73,7 @@ if(isset($_POST['create-task'])){
 
 
 
-    $task = new Task($taskID, $state, $date,$starTime, $endTime, $employee, $vehicle, $notice);
+    $task = new Task($taskID, $state, $date,$starTime, $endTime, $employee, $vehicle, $notice, $MCPs);
     array_push($_SESSION['task-list'] ,serialize($task));
 
     header('Location: ../../Views/Pages/CreateTask/createtask.php');
