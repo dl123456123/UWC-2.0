@@ -200,7 +200,7 @@ body{
   margin-left: 250px;
   padding: 15px;
   background-size: cover;
-  height: 100vh;
+  height: auto;
   transition: 0.3s;
 }
 
@@ -235,4 +235,5 @@ a {
 
 .main-container{
   background-color: #F7F9FC ;
+  height: auto;
 }

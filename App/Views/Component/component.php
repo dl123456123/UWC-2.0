@@ -51,22 +51,22 @@
                         <p>HEHEHE</p>
                       </div>
                     <li class="item">
-                        <a href="#" class="menu-btn">
+                        <a href="../Dashboard/Dashboard.php" class="menu-btn">
                             <i class="fas fa-desktop"></i><span>Dashboard</span>
                         </a>
                     </li>
                     <li class="item" id="profile">
-                        <a href="#" class="menu-btn">
+                        <a href="../TaskList/TaskList.php" class="menu-btn">
                         <i class="fas fa-list"></i><span>Task list</span>
                         </a>
                     </li>
                     <li class="item" id="messages">
-                        <a href="#" class="menu-btn">
+                        <a href="../TaskList/TaskList.php" class="menu-btn">
                             <i class="fas fa-envelope"></i><span>Messages</span>
                         </a>
                     </li>
                     <li class="item" id="settings">
-                        <a href="#" class="menu-btn">
+                        <a href="../CreateTask/createtask.php" class="menu-btn">
                             <i class="fas fa-plus-circle"></i><span>Create task</span>
                         </a>
                     </li>
