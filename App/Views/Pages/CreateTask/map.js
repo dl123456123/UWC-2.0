@@ -6,7 +6,7 @@ var myPos = [
 // list of MCP after
 var myListChosen = [];
 var directionsService = undefined;
-var directionsRendere = undefined;
+var directionsRenderer = undefined;
 
 function renderMCPToHMTL(myListChosen){
     document.getElementById("MCPs").value ="";
