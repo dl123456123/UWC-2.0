@@ -16,6 +16,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
         crossorigin="anonymous"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3EdhMXW7f43yXRvS9tT0wNEX0Bk3JznM&callback=initMap" async defer></script>
+    <script src="../CreateTask/map.js"></script>
+		
     
 
     <!-- add lib Chart.js -->
@@ -80,20 +83,22 @@
 					<span class="label">80%</span>
 				</div>
 			</div>
+			<div class="row">
+				<div class="Charts col-md-6 mt-3">
+					<div style = "width: 100%;">
+						<canvas id="column-chart"></canvas>
+					</div>
+	
+					<div style="width: 100%;">
+						<canvas id="line-chart"></canvas>
+					</div>
+				</div>
+	
+				<div class="col-md-6 mt-3" id="map">
+					
+				</div>
 
-            <div class="Charts">
-                <div style = "width: 50%;">
-                    <canvas id="column-chart"></canvas>
-                </div>
-
-                <div style="width: 50%;">
-                    <canvas id="line-chart"></canvas>
-                </div>
-            </div>
-
-            <div class="Map">
-                
-            </div>
+			</div>
 
 
         </div>
