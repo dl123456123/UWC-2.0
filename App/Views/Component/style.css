@@ -230,7 +230,6 @@ a {
 .wrapper.Mycollapse .main-container {
   width: calc(100% - 70px);
   margin-left: 70px;
-  min-height: 600px;
 }
 
 .main-container{
