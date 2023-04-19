@@ -7,6 +7,14 @@ abstract class Employee{
         $this->employeeID = $employeeID;
         $this->employeeName = $employeeName;
     }
+    // public function __construct(){
+    //     $this->employeeID = "";
+    //     $this->employeeName = "";
+    // }
+    public function __constructCopy(Employee $another){
+        $this->employeeID = $another -> employeeID;
+        $this->employeeName = $another -> employeeName;
+    }
 }
 
 class Janitor extends Employee{
@@ -52,7 +60,12 @@ class Troller{
 }
 
 class Task{
-    
+    public $taskID;
+    public $state;
+    public $starTime = 9;
+    public $endTime = 21;
+    public $employee = new Employee();
+
 }
 
 ?>
