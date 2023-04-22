@@ -43,7 +43,6 @@ window.addEventListener('scroll', function() {
 });
 //
 
-// Show popup
 function showPopup() {
   document.getElementById("popup").style.display = "block";
 }
