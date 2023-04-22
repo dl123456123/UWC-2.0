@@ -17,6 +17,7 @@ session_start();
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+        <script src="/path/to/crypto-js.js"></script>
     </head>
     <body>
 
@@ -66,7 +67,7 @@ session_start();
             <div class="main-container">
                 <div class="calendar">
                     <i class="fas fa-calendar-alt fa-2x" id="calendar-icon" onclick="toggleCalendar()"></i>
-                    <p id="day-select">Hôm nay</p>
+                    <p id="day-select" contenteditable="true">Hôm nay</p>
                 </div>
 
 
@@ -93,43 +94,38 @@ session_start();
                 </div>
             
 
-                  <?php
-                  if (isset($_SESSION['task-list'])) {
+                <?php
+                if (isset($_SESSION['task-list'])) {
                     foreach ($_SESSION['task-list'] as $task_str) {
                         $task = unserialize($task_str);
                         echo '
-                        
-                        <div class="task">
+                        <div class="task" style="display: none;" id="ID' .str_replace('-', '', $task->date). '">
                         <p>Thu gom rác </p>
                         <div class="info">
-                        <i class="fas fa-map-marker-alt fa-2x"></i><p>Địa điểm:  <span> '.$task->MCPs.' </span></p>
+                        <i class="fas fa-map-marker-alt fa-2x"></i><p>Địa điểm:  <span>' . $task->MCPs . '</span></p>
                         </div>
                         <div class="info">
-                        <i class="fas fa-truck fa-2x"></i><p>Phương tiện:  <span>'.$task->vehicle->vehicleID.'</span></p>
+                        <i class="fas fa-truck fa-2x"></i><p>Phương tiện:  <span>' . $task->vehicle->vehicleID . '</span></p>
                         </div>
                         <div class="info">
-                        <i class="fas fa-clock fa-2x"></i><p>Thời gian:  <span>'.$task->date.'</span></p>
+                        <i class="fas fa-clock fa-2x"></i><p>Thời gian:  <span>' . $task->date . '</span></p>
                         </div>
                         <div class="info">
-                        <i class="fas fa-check-circle fa-2x"></i><p>Check-in:  <span>7H-11H 2/2/22222</span></p>
+                        <i class="fas fa-check-circle fa-2x"></i><p>Check-in:  <span>-----</span></p>
                         </div>
                         <div class="info">
-                        <i class="fas fa-sign-out-alt fa-2x"></i><p>Check-out:  <span>7H-11H 2/2/2222</span></p>
+                        <i class="fas fa-sign-out-alt fa-2x"></i><p>Check-out:  <span>-----</span></p>
                         </div>
                         <div class="info">
-                        <i class="fas fa-exclamation-circle fa-2x"></i><p>Lưu ý:  <span>Đạt 2cm</span></p>
+                        <i class="fas fa-exclamation-circle fa-2x"></i><p>Lưu ý:  <span>' . $task->notice . '</span></p>
                         </div>
-                    </div>
-                        
+                        </div>
                         ';
-
                     }
                 } else {
                     echo 'No Task.';
                 }
-
-                  ?>
-
+                ?>
             </div>
         </div>
 

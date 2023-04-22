@@ -56,12 +56,12 @@
                         </a>
                     </li>
                     <li class="item" id="profile">
-                        <a href="../TaskList/TaskList.php" class="menu-btn">
+                        <a href="../TaskList/Listtask.php" class="menu-btn">
                         <i class="fas fa-list"></i><span>Task list</span>
                         </a>
                     </li>
                     <li class="item" id="messages">
-                        <a href="../TaskList/TaskList.php" class="menu-btn">
+                        <a href="../TaskList/Listtask.php" class="menu-btn">
                             <i class="fas fa-envelope"></i><span>Messages</span>
                         </a>
                     </li>
