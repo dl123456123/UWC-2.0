@@ -1,3 +1,7 @@
+<?php 
+    require_once('../../../Models/model.php');
+    session_start();
+    ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -14,7 +18,7 @@
 </head>
 
 <body>
-    <?php include '../../Component/component.php' ?>
+    <?php include ('../../Component/component.php'); ?>
 
     <div class="wrapper">
         <div class="main-container">
@@ -40,61 +44,48 @@
             </div>
             <div class="row">
                 <div class="col-sm-12">
-                    <table class="task-view">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Staff Name</th>
-                                <th>Type</th>
-                                <th>Vehicle</th>
-                                <th>Date Assigned</th>
-                                <th>Status</th> 
-                                <th>Details</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>John Doe</td>
-                                <td>Janitor</td>
-                                <td>
-                                    <div class="dropdown">
-                                        <button class="dropbtn" onclick="showPopup_task()">12345</button>
-                                    </div>
-                                </td>
-                                <td>2023-04-15</td>
-                                <td>In progress</td>
-                                <td>
-                                    <div class="dropdown">
-                                        <button class="dropbtn" onclick="showPopup()">...</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Jane Smith</td>
-                                <td>Collector</td>
-                                <td>
-                                    <div class="dropdown">
-                                        <button class="dropbtn" onclick="showPopup_task()">12345</button>
-                                    </div>
-                                </td>
-                                <td>2023-12-4</td>
-                                <td>Completed</td>
-                                <td>
-                                    <div class="dropdown">
-                                        <button class="dropbtn" onclick="showPopup()">...</button>
-                                    </div>
-                                </td>
-                            </tr>  
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+                <table class="task-view">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Staff Name</th>
+                            <th>Type</th>
+                            <th>Vehicle</th>
+                            <th>Date Assigned</th>
+                            <th>Status</th> 
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $taskID = 1;
+                        if (isset($_SESSION['task-list'])) {
+                            foreach ($_SESSION['task-list'] as $task_str) {
+                                $task = unserialize($task_str);
+                                echo '<tr>
+                                        <td><span>'.($taskID++).'</span></td> 
+                                        <td class="staff"><span>'.$task->employee->employeeName.'</span></td>
+                                        <td class="staff-type"><span>'.$task->employee->employeeType.'</span></td>
+                                        <td class="vehicle">'.$task->vehicle->vehicleID.'</span></td>
+                                        <td class="date"><span>'.$task->date.'</span></td>
+                                        <td class="state">'.$task->state.'</td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <button class="dropbtn" onclick="showPopup()">...</button>
+                                            </div>
+                                        </td>
+                                    </tr>'; 
+                            }
+                        } else {
+                            echo '<tr><td colspan="7">No Task.</td></tr>';
+                        }
+                        ?>
+                    </tbody>
+                </table>
             <!-- Task list -->
             <!-- Task staff -->
-            <div class="popup" id="popup">
-                <div id="frame-task-detail-header" style="display: flex; justify-content: space-between;">
+            <div class="popup" id="popup" >
+                <div id="popup-header" style="display: flex; justify-content: space-between;">
                     <h2 style="margin: 0 auto;">Task Detail <i class="fas fa-tasks"></i></h2>
                     <button id="closeTab-btn" onclick="hidePopup()">
                         <span class="circle-icon">
@@ -102,7 +93,7 @@
                         </span>
                     </button>
                 </div>
-                <div class="info">
+                <div class="popup-body">
                     <div class="vehicle">
                         <div class="card">
                             <div class="card-header">
@@ -190,119 +181,98 @@
                             </div>
                         </div>
                     </div> 
+                    <div class="vehicle">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3>Vehicle info <i class="fas fa-info-circle"></i></h3>
+                                </div>
+                                <div class="task-view">
+                                    <table width="100%">
+                                        <thead>
+                                            <tr>
+                                                <td>ID</td>
+                                                <td>Vehicle numer</td>
+                                                <td>Type</td>
+                                                <td>Capacity</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                                $VehicleID = 1;
+                                                $VehicleNumber = 10;
+                                                $Capacity = 100;
+                                                if (isset($_SESSION['task-list'])) {
+                                                    foreach ($_SESSION['task-list'] as $task_str) {
+                                                        $task = unserialize($task_str);
+                                                        echo '<tr>
+                                                                <td><span>'.('Xe-' .$VehicleID++).'</span></td>
+                                                                <td><span>'.('51H-100' .$VehicleNumber++).'</span></td>
+                                                                <td class="vehicle">'.$task->vehicle->vehicleID.'</span></td>
+                                                                <td><span>'.($Capacity.'Kg').'</span></td>
+                                                            </tr>'; 
+                                                    }
+                                                }
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="other">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3>Other info <i class="fas fa-info-circle"></i></h3>
+                                </div>
+                                <div class="task-view">
+                                    <table width="100%">
+                                        <thead>
+                                            <tr>
+                                            <td>Date Assigned</td>
+                                            <td>Status</td>
+                                            <td>Dealine</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php
+                                            $hour = "21h, ";
+                                            if (isset($_SESSION['task-list'])) {
+                                                foreach ($_SESSION['task-list'] as $task_str) {
+                                                    $task = unserialize($task_str);
+                                                    echo '<tr>
+                                                            <td class="date"><span>'.$task->date.'</span></td>
+                                                            <td class="state">'.$task->state.'</td>
+                                                            <td><span>'.($hour. $task->date).'</span></td>
+                                                        </tr>'; 
+                                                }
+                                            }
+                                        ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div> 
                 </div>
-                <div id="task-detail-footer" style="text-align: center;">
-                    <button id="edit-btn" class="button edit-btn" style="margin-right: 10px;" onclick="showEdit()">Edit <i class="fas fa-edit" style="color: #000000;"></i></button>
-                    <button id="delete-btn" class="button delete-btn" >Delete <i class="fas fa-trash" style="color: #000000;"></i></button>
+                <div class="popup-footer" id="popup-footer" style="text-align: center;">
+                    <button id="edit-btn" class="button-edit-btn" style="margin-right: 10px;" onclick="showEdit()">Edit <i class="fas fa-edit" style="color: #000000;"></i></button>
+                    <button id="delete-btn" class="button delete-btn" onclick="deleteRow()">Delete <i class="fas fa-trash" style="color: #000000;"></i></button>
                 </div>
             </div>
             <!-- Task staff -->
-            <!-- Task vehicle -->
-            <div class="popup_task" id="popup_task">
-                <div id="frame-task-detail-header" style="display: flex; justify-content: space-between;">
-                    <h2 style="margin: 0 auto;">Task Detail <i class="fas fa-tasks"></i></h2>
-                    <button id="closeTab-btn" onclick="hidePopup_task()">
-                        <span class="circle-icon">
-                            <i class="fas fa-times"></i>
-                        </span>
-                    </button>
-                </div>
-                <div class="info">
-                    <div class="vehicle">
-                        <div class="card">
-                            <div class="card-header">
-                                <h3>Vehicle info <i class="fas fa-info-circle"></i></h3>
-                            </div>
-                            <div class="task-view">
-                                <table width="100%">
-                                    <thead>
-                                        <tr>
-                                            <td>ID</td>
-                                            <td>Vehicle numer</td>
-                                            <td>Type</td>
-                                            <td>Capacity</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>xe-1</td>
-                                            <td>51H-123.45</td>
-                                            <td>Troller</td>
-                                            <td>100kg</td>
-                                        </tr>
-                                        <tr>
-                                            <td>xe-2</td>
-                                            <td>51H-888.88</td>
-                                            <td>Troller</td>
-                                            <td>95kg</td>
-                                        </tr>
-                                        <tr>
-                                            <td>xe-3</td>
-                                            <td>51H-188.88</td>
-                                            <td>Troller</td>
-                                            <td>110kg</td>
-                                        </tr>
-                                        
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="other">
-                        <div class="card">
-                            <div class="card-header">
-                                <h3>Other info <i class="fas fa-info-circle"></i></h3>
-                            </div>
-                            <div class="task-view">
-                                <table width="100%">
-                                    <thead>
-                                        <tr>
-                                        <td>Date Assigned</td>
-                                        <td>Status</td>
-                                        <td>Dealine</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>09h54, 04/08/2023</td>
-                                            <td><span class="status-InProgress">In progress</span></td>
-                                            <td>16h, 04/08/2023</td>
-                                        </tr>
-                                        <tr>
-                                            <td>08h, 04/08/2023</td>
-                                            <td><span class="status-Complete">Complete</span></td>
-                                            <td>13h, 04/08/2023</td>
-                                        </tr>
-                                        <tr>
-                                            <td>09h, 04/08/2023</td>
-                                            <td><span class="status-InProgress">In progress</span></td>
-                                            <td>15h, 04/08/2023</td>
-                                        </tr>
-                                        
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div> 
-                </div>
-                <div id="task-detail-footer" style="text-align: center;">
-                    <button id="edit-btn" class="button edit-btn" style="margin-right: 10px;" onclick="showEdit()">Edit <i class="fas fa-edit" style="color: #000000;"></i></button>
-                    <button id="delete-btn" class="button delete-btn">Delete <i class="fas fa-trash" style="color: #000000;"></i></button>
-                </div>
-            </div>
-            <!-- Task Vehicle -->
             <!-- Task Edit -->
             <div class="popup_edit" id="popup_edit">
-                <div id="edit-task">
-                    <div id="frame-task-detail-header" style="display: flex; justify-content: space-between;">
-                        <h2 style="margin: 0 auto;">Edit Task <i class="fas fa-edit"></i></h2>
-                        <button id="closeTab-btn" onclick="hideEdit()">
-                            <span class="circle-icon">
-                                <i class="fas fa-times"></i>
-                            </span>
-                        </button>
-                    </div>
-                    <div class="edit">
+    
+                    <div id="popup-header">
+                        <input value="" >
+                        <div id="frame-task-detail-header" style="display: flex; justify-content: space-between;">
+                            <h2 style="margin: 0 auto;">Edit Task <i class="fas fa-edit"></i></h2>
+                            <button id="closeTab-btn" onclick="hideEdit()">
+                                <span class="circle-icon">
+                                    <i class="fas fa-times"></i>
+                                </span>
+                            </button>
+                        </div>
+                    </div>    
+                    <div class="popup-body">
                         <div class="editStaff">
                             <div class="edit-card">
                                 <div class="edit-card-header">
@@ -317,18 +287,14 @@
                                         </select>
                                 </div>
                                 <div class="select-staff">
-                                    <label for="vehicle">Vehicle <span style="color:red;"> * </span></label>
-                                        <select class="form-select form-select-sm" id="vehicle" name="vehicle">
-                                            <option selected>Open this select menu</option>
-                                            <option value="VC-1">Collecting - 1</option>
-                                            <option value="VC-2">Collecting - 2</option>
-                                            <option value="VC-3">Collecting - 3</option>
-                                            <option value="VC-4">Collecting - 4</option>
-                                            <option value="VT-1">Troller - 1</option>
-                                            <option value="VT-2">Troller - 2</option>
-                                            <option value="VT-3">Troller - 3</option>
-                                            <option value="VT-4">Troller - 4</option>
-                                        </select>
+                                    <label for="staff">Staff name <span style="color:red;"> * </span></label>
+                                    <select class="form-select form-select-sm" id="staff" name="staff">
+                                        <!-- <option selected>Open this select menu</option>
+                                        <option value="Nguyễn Văn A">Nguyễn Văn A - Collector 1</option>
+                                        <option value="Nam máy bơm">Nam máy bơm - Collector 2</option>
+                                        <option value="Nhân sensor">Nhân sensor - Janitor 1</option>
+                                        <option value="Đạt led">Đạt led - Janitor 2</option> -->
+                                    </select>
                                 </div>
                             </div>
                             <div class="editVehicle">
@@ -338,27 +304,31 @@
                                     </div>
                                     <div class="select-vehicle">
                                         <label for="vehicle">Vehicle <span style="color:red;"> * </span></label>
-                                            <select class="form-select form-select-sm" id="vehicle" name="vehicle">
-                                                <option selected>Open this select menu</option>
-                                                <option value="VC-1">Collecting - 1</option>
-                                                <option value="VC-2">Collecting - 2</option>
-                                                <option value="VC-3">Collecting - 3</option>
-                                                <option value="VC-4">Collecting - 4</option>
-                                                <option value="VT-1">Troller - 1</option>
-                                                <option value="VT-2">Troller - 2</option>
-                                                <option value="VT-3">Troller - 3</option>
-                                                <option value="VT-4">Troller - 4</option>
-                                            </select>
+                                        <select class="form-select form-select-sm" id="vehicle" name="vehicle">
+                                            <!-- <option selected>Open this select menu</option>
+                                            <option value="VC-1">Collecting - 1</option>
+                                            <option value="VC-2">Collecting - 2</option>
+                                            <option value="VC-3">Collecting - 3</option>
+                                            <option value="VC-4">Collecting - 4</option>
+                                            <option value="VT-1">Troller - 1</option>
+                                            <option value="VT-2">Troller - 2</option>
+                                            <option value="VT-3">Troller - 3</option>
+                                            <option value="VT-4">Troller - 4</option> -->
+                                        </select>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div id="task-detail-footer" style="text-align: center;">
-                    <button id="edit-btn" class="button edit-btn" style="margin-right: 25px;" onclick="hideEdit()">Confirm <i class="fas fa-check" style="color: #000000;"></i></button>
-                    <button id="delete-btn" class="button delete-btn">Clear <i class="fas fa-broom" style="color: #000000;"></i></button>
-                </div>
+                    <div class="row">
+                        <div class="col-sm-6 text-right"></div>
+                            <input class="btn btn-primary" name ="create-task" type="submit" value="Confirm">
+                        </div>
+                        
+                        <div class="col-sm-6 text-left" id="map">
+                            <input class="btn btn-secondary" id="reset-a" type="reset" value="Clear">
+                        </div>
+                    </div>
             </div>
             <!-- Task Edit -->
             <!-- Pagination -->
