@@ -51,20 +51,19 @@ function hideEdit(taskID) {
 
 
 function deleteRow(taskID){
+  console.log('inthere');
   $.ajax({
     url: '../../../Controllers/ListtaskController/ListtaskController.php',
     data: {deleteTaskId: taskID},
     dataType: 'json',
-    type: "GET",
+    type: "POST",
     success: function(data) {
-        var vehicle = data.vehicle;
-        var staff = data.staff;
-        $('#vehicle').html(vehicle);
-        $('#staff').html(staff);
+      alert(data);
     },
-    error: function() {
+    error: function(error) {
       // handle any errors
-      alert('Error fetching options.');
+      console.log(error);
+      alert(error);
     }
   });
 }

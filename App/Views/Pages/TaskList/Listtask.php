@@ -197,7 +197,7 @@
                                                 </div>
                                                 <div class="popup-footer" id="popup-footer" style="text-align: center;">
                                                     <button id="edit-btn" class="button-edit-btn" style="margin-right: 10px;" onclick="showEdit('.$task->taskID.')">Edit <i class="fas fa-edit" style="color: #000000;"></i></button>
-                                                    <button id="delete-btn" class="button delete-btn" onclick="deleteRow()">Delete <i class="fas fa-trash" style="color: #000000;"></i></button>
+                                                    <button id="delete-btn" class="button delete-btn" onclick="deleteRow('.$task->taskID.')">Delete <i class="fas fa-trash" style="color: #000000;"></i></button>
                                                 </div>
                                             </div>
                                             <!-- Task staff -->
