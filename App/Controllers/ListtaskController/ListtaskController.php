@@ -15,6 +15,7 @@
         
         unset($_SESSION['task-list'][$index]);
         echo"complete delete";
+    }
     
     if(isset($_POST['edit-task'])){
         $type_employee = $_POST['staff-type'];
