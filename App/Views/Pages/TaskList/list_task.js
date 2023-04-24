@@ -14,12 +14,12 @@
 //       }
 //     }
 //   }
-$(document).ready(function(){
-    $(".sidebar-btn").click(function(){
-        console.log("sdvnsdivsijvnsdfsjkjsnkdsnvkjdsnjvsd")
-        $(".wrapper").toggleClass("Mycollapse");
-    });
-});
+// $(document).ready(function(){
+//     $(".sidebar-btn").click(function(){
+//         console.log("sdvnsdivsijvnsdfsjkjsnkdsnvkjdsnjvsd")
+//         $(".wrapper").toggleClass("Mycollapse");
+//     });
+// });
 // Lấy element pagination
 const pagination = document.querySelector('.pagination');
 
@@ -67,7 +67,7 @@ function showEdit(taskID) {
 
 function hideEdit(taskID) {
   document.getElementById("edit" + taskID).style.display = "none";
-  
+
 }
 //
 $(document).ready(function() {
