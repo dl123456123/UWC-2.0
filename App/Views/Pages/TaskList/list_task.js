@@ -43,12 +43,12 @@ window.addEventListener('scroll', function() {
 });
 //
 
-function showPopup() {
-  document.getElementById("popup").style.display = "block";
+function showPopup(taskID) {
+  document.getElementById(taskID).style.display = "block";
 }
 
-function hidePopup() {
-  document.getElementById("popup").style.display = "none";
+function hidePopup(taskID) {
+  document.getElementById(taskID).style.display = "none";
 }
 
 function showPopup_task() {

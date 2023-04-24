@@ -4,6 +4,7 @@ session_start();
 
 if(!isset($_SESSION['task-list'])){
     $_SESSION['task-list'] = array();
+    $_SESSION['task_id'] = 0;
 }
 
 if(isset($_GET['selectedValue'])){
@@ -41,7 +42,7 @@ if(isset($_GET['selectedValue'])){
 
 
 if(isset($_POST['create-task'])){
-    $taskID = count($_SESSION['task-list']) + 1;
+    $taskID = ++$_SESSION['task_id'];
     $type_employee = $_POST['staff-type'];
     $MCPs = $_POST['MCPs'];
     $date = $_POST['date'];

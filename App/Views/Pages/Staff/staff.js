@@ -7,6 +7,32 @@ $(document).ready(function(){
 
 
 
+function hideAllDivs() {
+  const divs = document.querySelectorAll('.task');
+  divs.forEach((div) => {
+    div.style.display = 'none';
+  });
+}
+
+function updateDiv() {
+  const p = document.getElementById('day-select');
+  const text = p.textContent;
+  const id = 'ID' + text.replaceAll('-', '');
+  hideAllDivs();
+  showDiv(id);
+}
+
+function showDiv(divId) {
+  const div = document.getElementById(divId);
+  div.style.display = 'block';
+}
+
+const dateElement = document.querySelector('#day-select');
+dateElement.addEventListener('DOMSubtreeModified', updateDiv);
+
+
+
+
 
 const calendarTable = document.querySelector('.calendar-table');
 const monthYear = document.querySelector('.month-year');
@@ -93,7 +119,7 @@ cells.forEach((cell) => {
       todayCell.classList.remove('current-day');
     }
     cell.classList.add('current-day');
-    const dateText = selectedDate.toDateString();
+    const dateText = selectedDate.toISOString().substring(0, 10); // lấy 10 ký tự đầu tiên
     const todayText = today.toDateString();
     const dateElement = document.querySelector('#day-select');
     if (dateText === todayText) {
@@ -103,8 +129,6 @@ cells.forEach((cell) => {
     }
   });
 });
-
-
 
   
   
