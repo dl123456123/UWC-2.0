@@ -45,11 +45,11 @@ window.addEventListener('scroll', function() {
 
 function showPopup(taskID) {
   console.log(taskID);
-  document.getElementById(taskID).style.display = "block";
+  document.getElementById("detail" + taskID).style.display = "block";
 }
 
 function hidePopup(taskID) {
-  document.getElementById(taskID).style.display = "none";
+  document.getElementById("detail" + taskID).style.display = "none";
 }
 
 function showPopup_task() {
@@ -61,12 +61,13 @@ function hidePopup_task() {
 }
 
 
-function showEdit() {
-  document.getElementById("popup_edit").style.display = "block";
+function showEdit(taskID) {
+  document.getElementById("edit" + taskID).style.display = "block";
 }
 
-function hideEdit() {
-  document.getElementById("popup_edit").style.display = "none";
+function hideEdit(taskID) {
+  document.getElementById("edit" + taskID).style.display = "none";
+  
 }
 //
 $(document).ready(function() {

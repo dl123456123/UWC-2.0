@@ -68,7 +68,7 @@
                                         <td class="state">'.$task->state.'</td>
                                         <td>
                                             <div class="dropdown">
-                                                <button class="dropbtn" onclick="showPopup()">...</button>
+                                                <button class="dropbtn" onclick="showPopup('.$task->taskID.')">...</button>
                                             </div>
                                         </td>
                                     </tr>'; 
@@ -85,10 +85,10 @@
                     $task = unserialize($task_str);
                     echo '
             
-            <div class="popup" id="1">
+            <div class="popup" id="detail'.$task->taskID.'">
                 <div id="popup-header" style="display: flex; justify-content: space-between;">
                     <h2 style="margin: 0 auto;">Task Detail <i class="fas fa-tasks"></i></h2>
-                    <button id="closeTab-btn" onclick="hidePopup('."detail".$task->taskID.')">
+                    <button id="closeTab-btn" onclick="hidePopup('.$task->taskID.')">
                         <span class="circle-icon">
                             <i class="fas fa-times"></i>
                         </span>
@@ -176,8 +176,6 @@
                                                                 <td><span>'.$task->vehicle->status.'</span></td>
                                                                 <td><span>'.('1000Kg').'</span></td>
                                                             </tr>
-                                                    }
-                                                }
                                         
                                         </tbody>
                                     </table>
@@ -202,7 +200,7 @@
                                             <tr>
                                                 <td class="date"><span>'.$task->date.'</span></td>
                                                 <td class="state">'.$task->state.'</td>
-                                                <td><span>'.($task->starTime).'-'.($task->endTime).'</span></td>
+                                                <td><span>'.($task->starTime).' h-'.($task->endTime).' h    </span></td>
                                             </tr>
                                             
                                         </tbody>
@@ -212,19 +210,19 @@
                         </div> 
                 </div>
                 <div class="popup-footer" id="popup-footer" style="text-align: center;">
-                    <button id="edit-btn" class="button-edit-btn" style="margin-right: 10px;" onclick="showEdit()">Edit <i class="fas fa-edit" style="color: #000000;"></i></button>
+                    <button id="edit-btn" class="button-edit-btn" style="margin-right: 10px;" onclick="showEdit('.$task->taskID.')">Edit <i class="fas fa-edit" style="color: #000000;"></i></button>
                     <button id="delete-btn" class="button delete-btn" onclick="deleteRow()">Delete <i class="fas fa-trash" style="color: #000000;"></i></button>
                 </div>
             </div>
             <!-- Task staff -->
             <!-- Task Edit -->
-            <div class="popup_edit" id="popup_edit">
-
+            <div class="popup_edit" id="edit'.$task->taskID.'">
+            <form name="edit-task" id="myForm" action="../../../Controllers/ListtaskController/ListtaskController.php" method="post">
                     <div id="popup-header">
-                        <input value="" >
+                        <input value="'.$task->taskID.'" hidden>
                         <div id="frame-task-detail-header" style="display: flex; justify-content: space-between;">
                             <h2 style="margin: 0 auto;">Edit Task <i class="fas fa-edit"></i></h2>
-                            <button id="closeTab-btn" onclick="hideEdit()">
+                            <button type="button" id="closeTab-btn" onclick="hideEdit('.$task->taskID.')">
                                 <span class="circle-icon">
                                     <i class="fas fa-times"></i>
                                 </span>
@@ -265,15 +263,17 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <input class="btn btn-primary" name ="create-task" type="submit" value="Confirm">
+                    <br>
+                    <div class="row" >
+                        <div class="col text-left">
+                            <input class="btn btn-primary w-100" name ="edit-task" type="submit" value="Confirm">
                         </div>
                         
-                        <div class="col-sm-6" id="map">
-                            <input class="btn btn-secondary" id="reset-a" type="reset" value="Clear">
+                        <div class="col text-left">
+                            <input class="btn btn-secondary w-100" id="reset-a" type="reset" value="Clear">
                         </div>
                     </div>
+                </form>
             </div>
 
         ';}
