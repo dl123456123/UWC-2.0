@@ -34,7 +34,7 @@ if(isset($_GET['selectedValue'])){
                                 <option value="T-4">Troller - 4</option>';
         $response['staff'] = ' <option value="" selected>Open this select menu</option>
                                 <option value="J-1;Nhân sensor">Nhân sensor - Janitor 1</option>
-                                <option value="J-2;Đạt led">Đạt led - Janitor 2</option> -->';
+                                <option value="J-2;Đạt led">Đạt led - Janitor 2</option>';
     }
 
     echo json_encode($response);

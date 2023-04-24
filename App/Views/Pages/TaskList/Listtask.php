@@ -62,8 +62,8 @@
                                 $task = unserialize($task_str);
                                 echo '<tr>
                                         <td><span>'.($task->taskID).'</span></td> 
-                                        <td class="staff"><span>'.$task->employee->employeeName.'</span></td>
-                                        <td class="staff-type"><span>'.$task->employee->employeeType.'</span></td>
+                                        <td class="staff"><span>'.(empty($task->employee)?'NONE':$task->employee->employeeName).'</span></td>
+                                        <td class="staff-type"><span>'.(empty($task->employee)?'NONE':$task->employee->employeeType).'</span></td>
                                         <td class="vehicle">'.$task->vehicle->vehicleID.'</span></td>
                                         <td class="date"><span>'.$task->date.'</span></td>
                                         <td class="state">'.$task->state.'</td>
@@ -114,9 +114,9 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>'.$task->employee->employeeID.'</td>
-                                            <td>'.$task->employee->employeeName.'</td>
-                                            <td>'.$task->employee->employeeType.'</td>
+                                            <td>'.(empty($task->employee)?'NONE':$task->employee->employeeID).'</td>
+                                            <td>'.(empty($task->employee)?'NONE':$task->employee->employeeName).'</td>
+                                            <td>'.(empty($task->employee)?'NONE':$task->employee->employeeType) .'</td>
                                             <td>0909090909</td>
                                             <td>datvilla@gmail.com</td>
                                         </tr>
@@ -239,7 +239,6 @@
                                 <div class="select-staff-type">
                                     <label for="staff-type">Staff type <span style="color:red;"> * </span></label>
                                         <select class="form-select form-select-sm" id="staff-type" name="staff-type">
-                                            <option selected>Open this select menu</option>
                                             <option value="collector">Collector</option>
                                             <option value="janitor">Janitor</option>
                                         </select>
@@ -247,6 +246,10 @@
                                 <div class="select-staff">
                                     <label for="staff">Staff name <span style="color:red;"> * </span></label>
                                     <select class="form-select form-select-sm" id="staff" name="staff">
+                                            <option value="C-1;Nguyễn Văn A">Nguyễn Văn A - Collector 1</option>
+                                            <option value="C-2;Nam máy bơm">Nam máy bơm - Collector 2</option>
+                                            <option value="J-1;Nhân sensor">Nhân sensor - Janitor 1</option>
+                                            <option value="J-2;Đạt led">Đạt led - Janitor 2</option>
                                     </select>
                                 </div>
                             </div>
@@ -257,7 +260,15 @@
                                     </div>
                                     <div class="select-vehicle">
                                         <label for="vehicle">Vehicle <span style="color:red;"> * </span></label>
-                                        <select class="form-select form-select-sm" id="vehicle" name="vehicle">
+                                            <select class="form-select form-select-sm" id="vehicle" name="vehicle">
+                                            <option value="C-1">Collecting - 1</option>
+                                            <option value="C-2">Collecting - 2</option>
+                                            <option value="C-3">Collecting - 3</option>
+                                            <option value="C-4">Collecting - 4</option>
+                                            <option value="T-1">Troller - 1</option>
+                                            <option value="T-2">Troller - 2</option>
+                                            <option value="T-3">Troller - 3</option>
+                                            <option value="T-4">Troller - 4</option>
                                         </select>
                                     </div>
                                 </div>
