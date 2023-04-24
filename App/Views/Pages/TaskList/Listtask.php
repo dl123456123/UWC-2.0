@@ -8,7 +8,7 @@
 <head>
     <meta charset="utf-8">
     <title>UWC</title>
-    <link rel="stylesheet" href="TaskList.css">
+    <link rel="stylesheet" href="list_task.css">
     <link rel="stylesheet" href="../../Component/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
@@ -84,7 +84,7 @@
                 </table>
             <!-- Task list -->
             <!-- Task staff -->
-            <div class="popup" id="popup">
+            <div class="popup" id="popup" >
                 <div id="popup-header" style="display: flex; justify-content: space-between;">
                     <h2 style="margin: 0 auto;">Task Detail <i class="fas fa-tasks"></i></h2>
                     <button id="closeTab-btn" onclick="hidePopup()">
@@ -260,7 +260,9 @@
             <!-- Task staff -->
             <!-- Task Edit -->
             <div class="popup_edit" id="popup_edit">
+    
                     <div id="popup-header">
+                        <input value="" >
                         <div id="frame-task-detail-header" style="display: flex; justify-content: space-between;">
                             <h2 style="margin: 0 auto;">Edit Task <i class="fas fa-edit"></i></h2>
                             <button id="closeTab-btn" onclick="hideEdit()">
@@ -343,7 +345,7 @@
             </div>	
             <!-- Pagination -->
         </div>
-        <script src="TaskList.js"></script>
+        <script src="list_task.js"></script>
         <script src="../../Component/app.js"></script>
     </div>
 </body>
