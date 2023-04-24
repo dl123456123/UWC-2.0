@@ -1,20 +1,17 @@
 <?php
     require_once('../../Models/model.php');
     session_start();
-    echo "in there";
-    var_dump($_SESSION['task-list']);
-    echo $_POST['deleteTaskId'];
-    if(isset($_POST['deleteTaskId'])){
-        echo "in there";
+    if(isset($_GET['deleteTaskId'])){
 
-        $id = $_POST['deleteTaskId'];
-        $index = 0;
-        while($_SESSION['task-list'][$index]->taskID != $id){
-            $index++;
+        for ($i = 0; $i < count($_SESSION['task-list']); $i++) {
+            $task = unserialize($_SESSION['task-list'][$i]);
+            if($task->taskID == $_GET['deleteTaskId']){
+                unset($_SESSION['task-list'][$i]);
+                break;
+            }
         }
-        
-        unset($_SESSION['task-list'][$index]);
-        echo"complete delete";
+        $_SESSION['task-list'] = array_values($_SESSION['task-list']);
+        echo json_encode("complete delete");
     }
     
     if(isset($_POST['edit-task'])){

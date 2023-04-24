@@ -51,19 +51,19 @@ function hideEdit(taskID) {
 
 
 function deleteRow(taskID){
-  console.log('inthere');
   $.ajax({
     url: '../../../Controllers/ListtaskController/ListtaskController.php',
     data: {deleteTaskId: taskID},
     dataType: 'json',
-    type: "POST",
     success: function(data) {
-      alert(data);
+      window.location.reload();
+
+      // alert(data);
     },
     error: function(error) {
       // handle any errors
       console.log(error);
-      alert(error);
+      // alert(error);
     }
   });
 }
