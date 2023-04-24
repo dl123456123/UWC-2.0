@@ -44,6 +44,7 @@ window.addEventListener('scroll', function() {
 //
 
 function showPopup(taskID) {
+  console.log(taskID);
   document.getElementById(taskID).style.display = "block";
 }
 

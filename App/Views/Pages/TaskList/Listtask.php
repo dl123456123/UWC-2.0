@@ -68,7 +68,7 @@
                                         <td class="state">'.$task->state.'</td>
                                         <td>
                                             <div class="dropdown">
-                                                <button class="dropbtn" onclick="showPopup("1")">...</button>
+                                                <button class="dropbtn" onclick="showPopup()">...</button>
                                             </div>
                                         </td>
                                     </tr>'; 
@@ -85,7 +85,7 @@
                     $task = unserialize($task_str);
                     echo '
             
-            <div class="popup" id="1" >
+            <div class="popup" id="1">
                 <div id="popup-header" style="display: flex; justify-content: space-between;">
                     <h2 style="margin: 0 auto;">Task Detail <i class="fas fa-tasks"></i></h2>
                     <button id="closeTab-btn" onclick="hidePopup('."detail".$task->taskID.')">
