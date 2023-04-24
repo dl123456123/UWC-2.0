@@ -143,8 +143,8 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>004</td>
-                                            <td>MCP4</td>
+                                            <td>'.$task->taskID.'</td>
+                                            <td>'.$task->MCPs.'</td>
                                             <td>500kg</td>
                                             <td>80%</td>
                                             <td>01:02:169:128</td>
@@ -220,7 +220,7 @@
             <div class="popup_edit" id="edit'.$task->taskID.'">
             <form name="edit-task" id="myForm" action="../../../Controllers/ListtaskController/ListtaskController.php" method="post">
                     <div id="popup-header">
-                        <input value="'.$task->taskID.'" hidden>
+                        <input name="task-id" value="'.$task->taskID.'" hidden>
                         <div id="frame-task-detail-header" style="display: flex; justify-content: space-between;">
                             <h2 style="margin: 0 auto;">Edit Task <i class="fas fa-edit"></i></h2>
                             <button type="button" id="closeTab-btn" onclick="hideEdit('.$task->taskID.')">

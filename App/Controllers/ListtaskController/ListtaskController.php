@@ -2,65 +2,25 @@
     require_once('../../Models/model.php');
     session_start();
     
-    if(!isset($_SESSION['task-list'])){
-        $_SESSION['task-list'] = array();
-    }
-    
-    if(isset($_GET['selectedValue'])){
-            // get the selected value from the first select field
-        $selectedValue = $_GET['selectedValue'];
-    
-        $response = array(
-            'vehicle' => '', // chuỗi ký tự
-            'staff' => '' // chuỗi ký tự
-        );
-        // generate the options for the second select field based on the selected value
-        if ($selectedValue == 'collector') {
-            $response['vehicle'] = '
-                                    <option value="C-1">Collecting - 1</option>
-                                    <option value="C-2">Collecting - 2</option>
-                                    <option value="C-3">Collecting - 3</option>
-                                    <option value="C-4">Collecting - 4</option>';
-            $response['staff'] = '
-                                    <option value="" selected>Open this select menu</option>
-                                    <option value="C-1;Nguyễn Văn A">Nguyễn Văn A - Collector 1</option>
-                                    <option value="C-2;Nam máy bơm">Nam máy bơm - Collector 2</option>';
-        } else if ($selectedValue == 'janitor') {
-            $response['vehicle'] = '
-                                    <option value="T-1">Troller - 1</option>
-                                    <option value="T-2">Troller - 2</option>
-                                    <option value="T-3">Troller - 3</option>
-                                    <option value="T-4">Troller - 4</option>';
-            $response['staff'] = ' <option value="" selected>Open this select menu</option>
-                                    <option value="J-1;Nhân sensor">Nhân sensor - Janitor 1</option>
-                                    <option value="J-2;Đạt led">Đạt led - Janitor 2</option> -->';
-        }
-    
-        echo json_encode($response);
-    }
-    
-    
-    if(isset($_POST['create-task'])){
+    if(isset($_POST['edit-task'])){
         $type_employee = $_POST['staff-type'];
-        $vehicleID = $_POST['vehicle'];
-        $employee ="";
-        if($type_employee == "collector"){
-            if(!empty($_POST['staff'])){
-                $temp_employee = explode(";",$_POST['staff']);
-                $employee = new Employee($temp_employee[0],$temp_employee[1],"collector");
-            }
-            $vehicle = new Collecting(0,$vehicleID);
-        }else if($type_employee == "janitor"){
-            if(!empty($_POST['staff'])){
-                $temp_employee = explode(";",$_POST['staff']);
-                $employee = new Employee($temp_employee[0],$temp_employee[1],"janitor");
-            }
-            $vehicle = new Troller(1, $vehicleID);
+        $temp_employee = explode(";",$_POST['staff']);
+        $employee = new Employee($temp_employee[0],$temp_employee[1],$type_employee);
+        $temp = explode("-",$_POST['vehicle']);
+        if($temp[0] == "C"){
+            $vehicle = new Collecting(0,$_POST['vehicle']);
+        }else{
+            $vehicle = new Troller(0, $_POST['vehicle']);
         }
-    
-        $starTime = 9;
-        $endTime = 21;
-    
-        header('Location: ../../Views/Pages/TaskList/TaskList.php');
+        for ($i = 0; $i < count($_SESSION['task-list']); $i++) {
+            $task = unserialize($_SESSION['task-list'][$i]);
+            if($task->taskID == $_POST['task-id']){
+                $task->employee = $employee;
+                $task->vehicle = $vehicle;
+                $task -> state = "notyet";
+                $_SESSION['task-list'][$i] = serialize($task);
+            }
+        }
+        header('Location: ../../Views/Pages/TaskList/Listtask.php');
     }
 ?>
