@@ -48,7 +48,29 @@ function hideEdit(taskID) {
   document.getElementById("edit" + taskID).style.display = "none";
 
 }
+
+
+function deleteRow(taskID){
+  $.ajax({
+    url: '../../../Controllers/ListtaskController/ListtaskController.php',
+    data: {deleteTaskId: taskID},
+    dataType: 'json',
+    type: "GET",
+    success: function(data) {
+        var vehicle = data.vehicle;
+        var staff = data.staff;
+        $('#vehicle').html(vehicle);
+        $('#staff').html(staff);
+    },
+    error: function() {
+      // handle any errors
+      alert('Error fetching options.');
+    }
+  });
+}
 //
+
+
 $(document).ready(function() {
   var selectedValue = $('#staff-type').val();
   $.ajax({
@@ -114,4 +136,10 @@ $(document).ready(function() {
         }
       });
     });
+
+
+
+
+
+
   });
