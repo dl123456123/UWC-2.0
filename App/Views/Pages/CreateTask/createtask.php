@@ -15,10 +15,10 @@
       
 
 
-    
+
     <!-- include google map js source -->
     <!-- <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDgPJSyO3GGZuY0pdNYY9SoB1Usht4CdHQ&sensor=false"></script> -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcpM9JTgme4y5NwkYpomNNvyO-T_LtAt0git&callback=initMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcpM9JTgme4y5NwkYpomNNvyO-T_LtAt0&callback=initMap" async defer></script>
     <script src="./map.js"></script>
     <script src="createtask.js"></script>
     <link rel="stylesheet" href="../../Component/style.css">
